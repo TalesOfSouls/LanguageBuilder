@@ -11,6 +11,9 @@
     #include <limits.h>
 #endif
 
+#include "../GameEngine/log/Debug.h"
+#include "../GameEngine/log/Debug.cpp"
+
 #include "../GameEngine/localization/Language.h"
 #include "../GameEngine/utils/StringUtils.h"
 
@@ -49,8 +52,11 @@ void iter_directories_recursive(RingMemory* ring, const char *dir_path) {
                 if (GetFullPathNameA(path, sizeof(abs_path), abs_path, NULL)) {
                     printf("Found .langtxt file: %s\n", abs_path);
 
-                    languages[lang_index].data = (byte *) calloc(32, MEGABYTE);
-                    language_from_file_txt(ring, abs_path, languages + lang_index);
+                    FileBody file;
+                    file_read(abs_path, &file, ring);
+
+                    languages[lang_index].data = (byte *) calloc(1, file.size + 1 * MEGABYTE);
+                    language_from_file_txt(languages + lang_index, file.content);
 
                     char new_path[MAX_PATH];
                     str_replace(abs_path, ".langtxt", ".langbin", new_path);
@@ -98,8 +104,11 @@ void iter_directories_recursive(RingMemory* ring, const char *dir_path) {
                 if (realpath(path, abs_path)) {
                     printf("Found .langtxt file: %s\n", abs_path);
 
-                    languages[lang_index].data = (byte *) calloc(32, MEGABYTE);
-                    language_from_file_txt(ring, abs_path, languages + lang_index);
+                    FileBody file;
+                    file_read(abs_path, &file, ring);
+
+                    languages[lang_index].data = (byte *) calloc(1, file.size + 1 * MEGABYTE);
+                    language_from_file_txt(languages + lang_index, file.content);
 
                     char new_path[MAX_PATH];
                     str_replace(abs_path, ".langtxt", ".langbin", new_path);

@@ -1,5 +1,4 @@
-cls
-set "EXE_NAME=lang_builder_win32"
+set "EXE_NAME=lang_builder"
 set "DESTINATION_DIR=..\build\langbuilder"
 
 IF NOT EXIST ..\build mkdir ..\build
