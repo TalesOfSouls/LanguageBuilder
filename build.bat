@@ -1,5 +1,5 @@
 set "EXE_NAME=lang_builder"
-set "DESTINATION_DIR=..\build\langbuilder"
+set "DESTINATION_DIR=..\build\lang_builder"
 
 IF NOT EXIST ..\build mkdir ..\build
 IF NOT EXIST "%DESTINATION_DIR%" mkdir "%DESTINATION_DIR%"
