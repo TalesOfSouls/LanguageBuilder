@@ -11,6 +11,7 @@
     #include <limits.h>
 #endif
 
+#include "debug.h"
 #include "../GameEngine/log/Debug.cpp"
 
 #include "../GameEngine/localization/Language.h"
@@ -51,17 +52,19 @@ void iter_directories_recursive(RingMemory* ring, const char *dir_path) {
                 if (GetFullPathNameA(path, sizeof(abs_path), abs_path, NULL)) {
                     printf("Found .langtxt file: %s\n", abs_path);
 
-                    FileBody file;
-                    file_read(abs_path, &file, ring);
+                    languages[lang_index].data = (byte *) calloc(1, file_size(abs_path) + 1 * MEGABYTE);
+                    language_from_file_txt(languages + lang_index, abs_path, ring);
 
-                    languages[lang_index].data = (byte *) calloc(1, file.size + 1 * MEGABYTE);
-                    language_from_file_txt(languages + lang_index, file.content);
+                    FileBody output;
+                    output.content = (byte *) calloc(10, MEGABYTE);
+                    output.size = language_to_data(languages + lang_index, output.content);
 
                     char new_path[MAX_PATH];
                     str_replace(abs_path, ".langtxt", ".langbin", new_path);
-                    language_to_file(ring, new_path, languages + lang_index);
+                    file_write(new_path, &output);
 
                     free(languages[lang_index].data);
+                    free(output.content);
 
                     ++lang_index;
                 }
