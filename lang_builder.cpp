@@ -45,7 +45,7 @@ void iter_directories_recursive(RingMemory* ring, const char *dir_path) {
         if (findFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
             iter_directories_recursive(ring, path);
         } else if (findFileData.dwFileAttributes & FILE_ATTRIBUTE_ARCHIVE) {
-            const char *ext = strrchr(findFileData.cFileName, '.');
+            const char* ext = strrchr(findFileData.cFileName, '.');
 
             if (ext && strcmp(ext, ".langtxt") == 0) {
                 char abs_path[MAX_PATH];
@@ -55,7 +55,7 @@ void iter_directories_recursive(RingMemory* ring, const char *dir_path) {
                     languages[lang_index].data = (byte *) calloc(1, file_size(abs_path) + 1 * MEGABYTE);
                     language_from_file_txt(languages + lang_index, abs_path, ring);
 
-                    FileBody output;
+                    FileBody output = {};
                     output.content = (byte *) calloc(10, MEGABYTE);
                     output.size = language_to_data(languages + lang_index, output.content);
 
@@ -106,7 +106,7 @@ void iter_directories_recursive(RingMemory* ring, const char *dir_path) {
                 if (realpath(path, abs_path)) {
                     printf("Found .langtxt file: %s\n", abs_path);
 
-                    FileBody file;
+                    FileBody file = {};
                     file_read(abs_path, &file, ring);
 
                     languages[lang_index].data = (byte *) calloc(1, file.size + 1 * MEGABYTE);
