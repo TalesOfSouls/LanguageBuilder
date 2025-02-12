@@ -12,8 +12,6 @@
 #endif
 
 #include "debug.h"
-#include "../GameEngine/log/Debug.cpp"
-
 #include "../GameEngine/localization/Language.h"
 #include "../GameEngine/utils/StringUtils.h"
 
