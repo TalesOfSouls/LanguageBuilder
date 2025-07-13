@@ -11,9 +11,8 @@
     #include <limits.h>
 #endif
 
-#include "debug.h"
-#include "../GameEngine/localization/Language.h"
-#include "../GameEngine/utils/StringUtils.h"
+#include "../cOMS/localization/Language.h"
+#include "../cOMS/utils/StringUtils.h"
 
 Language* languages;
 int lang_index = 0;
