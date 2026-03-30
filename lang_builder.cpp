@@ -11,8 +11,10 @@
     #include <limits.h>
 #endif
 
-#include "../cOMS/localization/Language.h"
 #include "../cOMS/utils/StringUtils.h"
+#include "../cOMS/system/FileUtils.cpp"
+#include "../cOMS/memory/RingMemory.h"
+#include "../cOMS/localization/Language.cpp"
 
 Language* languages;
 int lang_index = 0;
