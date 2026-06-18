@@ -11,18 +11,18 @@
     #include <limits.h>
 #endif
 
-#include "../cOMS/localization/Language.h"
+#include "../cOMS/localization/Language.cpp"
 #include "../cOMS/utils/StringUtils.h"
 
 Language* languages;
 int lang_index = 0;
 
 #if _WIN32
-void iter_directories_recursive(RingMemory* ring, const char *dir_path) {
+void iter_directories_recursive(RingMemory* const ring, const char *dir_path) {
     WIN32_FIND_DATAA findFileData;
     HANDLE hFind = INVALID_HANDLE_VALUE;
-    char path[MAX_PATH];
-    char searchPath[MAX_PATH];
+    char path[PATH_MAX_LENGTH];
+    char searchPath[PATH_MAX_LENGTH];
 
     snprintf(searchPath, sizeof(searchPath), "%s\\*", dir_path);
 
@@ -42,21 +42,21 @@ void iter_directories_recursive(RingMemory* ring, const char *dir_path) {
         if (findFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
             iter_directories_recursive(ring, path);
         } else if (findFileData.dwFileAttributes & FILE_ATTRIBUTE_ARCHIVE) {
-            const char* ext = strrchr(findFileData.cFileName, '.');
+            const char* const ext = strrchr(findFileData.cFileName, '.');
 
             if (ext && strcmp(ext, ".langtxt") == 0) {
-                char abs_path[MAX_PATH];
+                char abs_path[PATH_MAX_LENGTH];
                 if (GetFullPathNameA(path, sizeof(abs_path), abs_path, NULL)) {
                     printf("Found .langtxt file: %s\n", abs_path);
 
                     languages[lang_index].data = (byte *) calloc(1, file_size(abs_path) + 1 * MEGABYTE);
                     language_from_file_txt(languages + lang_index, abs_path, ring);
 
-                    FileBody output = {};
+                    FileBody output = {0};
                     output.content = (byte *) calloc(10, MEGABYTE);
                     output.size = language_to_data(languages + lang_index, output.content);
 
-                    char new_path[MAX_PATH];
+                    char new_path[PATH_MAX_LENGTH];
                     str_replace(abs_path, ".langtxt", ".langbin", new_path);
                     file_write(new_path, &output);
 
@@ -72,7 +72,7 @@ void iter_directories_recursive(RingMemory* ring, const char *dir_path) {
     FindClose(hFind);
 }
 #else
-void iter_directories_recursive(RingMemory* ring, const char *dir_path) {
+void iter_directories_recursive(RingMemory* const ring, const char *dir_path) {
     struct dirent *entry;
     DIR *dir = opendir(dir_path);
 
@@ -82,7 +82,7 @@ void iter_directories_recursive(RingMemory* ring, const char *dir_path) {
     }
 
     while ((entry = readdir(dir)) != NULL) {
-        char path[PATH_MAX];
+        char path[PATH_MAX_LENGTH];
         struct stat statbuf;
 
         if (entry->d_name == '.') {
@@ -99,17 +99,17 @@ void iter_directories_recursive(RingMemory* ring, const char *dir_path) {
         } else if (S_ISREG(statbuf.st_mode)) {
             const char *ext = strrchr(entry->d_name, '.');
             if (ext && strcmp(ext, ".langtxt") == 0) {
-                char abs_path[PATH_MAX];
+                char abs_path[PATH_MAX_LENGTH];
                 if (realpath(path, abs_path)) {
                     printf("Found .langtxt file: %s\n", abs_path);
 
-                    FileBody file = {};
+                    FileBody file = {0};
                     file_read(abs_path, &file, ring);
 
                     languages[lang_index].data = (byte *) calloc(1, file.size + 1 * MEGABYTE);
                     language_from_file_txt(languages + lang_index, file.content);
 
-                    char new_path[MAX_PATH];
+                    char new_path[PATH_MAX_LENGTH];
                     str_replace(abs_path, ".langtxt", ".langbin", new_path);
                     language_to_file(ring, new_path, languages + lang_index);
 
@@ -132,7 +132,7 @@ int main(int argc, char *argv[])
         return EXIT_FAILURE;
     }
 
-    RingMemory memory_volatile = {};
+    RingMemory memory_volatile = {0};
     memory_volatile.memory = (byte *) malloc(sizeof(byte) * GIGABYTE * 1);
     memory_volatile.size = sizeof(byte) * GIGABYTE * 1;
 
