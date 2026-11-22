@@ -1,1 +1,5 @@
 text eol=lf
+*.bat text eol=crlf
+
+# Test data is compared byte by byte -> never converted (e.g. core.autocrlf on Windows)
+tests/** -text

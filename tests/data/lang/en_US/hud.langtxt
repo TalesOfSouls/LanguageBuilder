@@ -1,0 +1,11 @@
+version 2
+
+/////////////////////////////////////////////////////////////////////////
+// Strings of hud.layouttxt ("text: @key"), English
+// Syntax: "key: string" (@see cOMS/localization/Language.cpp)
+// WARNING: patterns (%n, %s, ...) must keep the format specifiers
+/////////////////////////////////////////////////////////////////////////
+
+hud_fps: FPS: %n
+hud_apm: APM: %n
+hud_console_columns: Time | Message

@@ -1,0 +1,146 @@
+version 2
+
+/////////////////////////////////////////////////////////////////////////
+// Strings of menu.layouttxt ("text: @key"), English
+// Syntax: "key: string" (@see cOMS/localization/Language.cpp)
+// The strings of the code (hotkey names, value formats) are global strings (assets/localization/general/<language>.langtxt)
+/////////////////////////////////////////////////////////////////////////
+
+// Game menu
+menu_title: Menu
+menu_load: Load
+menu_save: Save
+menu_settings: Settings
+menu_exit: Exit
+
+// Settings window
+settings_title: Settings
+settings_apply: Apply
+
+// Navigation
+settings_category_gameplay: GAMEPLAY
+settings_category_interface: INTERFACE
+settings_category_system: SYSTEM
+settings_category_other: OTHER
+
+settings_page_hotkeys: Hotkeys
+settings_page_controls: Controls
+settings_page_interface: General
+settings_page_minimap: Minimap
+settings_page_graphics: Graphics
+settings_page_audio: Audio
+settings_page_network: Network
+settings_page_language: Language
+settings_page_accessibility: Accessibility
+
+// Hotkeys
+settings_hotkeys_hint: Click an entry and press the new key or key combination. Esc = cancel
+settings_hotkey_columns: Action | Keyboard / Mouse | Controller
+
+// Controls
+settings_section_mouse: Mouse
+settings_mouse_sensitivity: Mouse sensitivity
+settings_camera_speed: Camera speed
+settings_section_controller: Controller
+settings_deadzone: Stick deadzone
+settings_vibration: Vibration
+settings_invert_stick: Invert right stick (vertical)
+
+// Interface
+settings_section_nametags: Name tags
+settings_nametag_visibility: Show name tags of
+settings_players: Players
+settings_npcs: NPCs
+settings_monsters: Monsters
+settings_nametag_size: Name tag size
+settings_section_hud: HUD
+settings_show_fps: Show FPS
+settings_show_clock: Show clock
+settings_show_tooltips: Show tooltips
+settings_show_damage: Show damage numbers
+settings_chat_opacity: Chat opacity
+
+// Minimap
+settings_minimap_visibility: Show on the minimap
+settings_quests: Quests
+settings_elites: Elites
+settings_resources: Resources
+settings_merchants: Merchants
+settings_dungeons: Dungeons
+settings_minimap_rotate: Rotate the minimap with the camera
+settings_minimap_zoom: Zoom
+settings_minimap_zoom_options: Very near | Near | Medium | Far | Very far | Maximum
+settings_minimap_size: Size
+
+// Graphics
+settings_section_display: Display
+settings_monitor: Monitor
+settings_monitor_options: Primary monitor
+settings_display_mode: Display mode
+settings_display_modes: Fullscreen | Windowed fullscreen | Windowed
+settings_resolution: Resolution
+settings_fps_limit: Frame rate limit
+settings_fps_limits: Unlimited | 30 | 60 | 120 | 144 | 165 | 240
+settings_vsync: Vertical sync (VSync)
+settings_ui_scale: UI scale
+settings_fov: Field of view
+settings_brightness: Brightness
+settings_section_quality: Quality
+settings_preset: Quality preset
+settings_presets: Very low | Low | Medium | High | Very high | Ultra | Next gen | Custom
+settings_anti_aliasing: Anti-aliasing
+settings_anti_aliasing_options: None | MSAA 2x | MSAA 4x | MSAA 8x | FXAA | TAA
+settings_render_scale: Render scale
+settings_texture_quality: Texture quality
+settings_shadow_quality: Shadow quality
+settings_particle_density: Particle density
+settings_quality_options: Very low | Low | Medium | High | Very high | Ultra | Next gen
+settings_quality_off_options: Off | Very low | Low | Medium | High | Very high | Ultra | Next gen
+settings_ambient_occlusion: Ambient occlusion
+settings_bloom: Bloom
+settings_motion_blur: Motion blur
+settings_depth_of_field: Depth of field
+settings_section_distance: View distance
+settings_view_distance: Render distance
+settings_foliage_distance: Foliage distance
+settings_foliage_detail: Foliage detail
+settings_player_distance: Player distance
+settings_mob_distance: Mob distance
+settings_object_distance: Object distance
+settings_distance_options: Near | Medium | Far | Very far
+
+// Audio
+settings_section_volume: Volume
+settings_volume_master: Master
+settings_volume_game: Effects
+settings_volume_environment: Environment
+settings_volume_music: Music
+settings_volume_speech: Speech
+settings_section_output: Output
+settings_audio_device: Output device
+settings_audio_device_options: Default device
+settings_mute_background: Mute when the game is in the background
+
+// Network
+settings_section_connection: Connection
+settings_server_region: Server region
+settings_region_options: Automatic | Europe | North America | South America | Asia | Oceania
+settings_interpolation: Interpolation delay
+settings_show_net_graph: Show net graph
+settings_low_bandwidth: Reduce bandwidth usage
+settings_upnp: Use UPnP
+
+// Language
+settings_language_ui: Interface language
+settings_language_voice: Voice language
+settings_language_options: English (US)
+settings_chat_filter: Filter offensive language in the chat
+settings_language_hint: A language change is applied after a restart.
+
+// Accessibility
+settings_color_deficiency: Color blindness mode
+settings_color_deficiency_options: None | Protanopia | Deuteranopia | Tritanopia
+settings_text_size: Text size
+settings_camera_shake: Camera shake
+settings_subtitles: Subtitles
+settings_reduce_flashing: Reduce flashing effects

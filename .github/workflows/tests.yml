@@ -1,0 +1,66 @@
+# Builds language_builder and runs the tests (tests/run_tests.sh), debug + release:
+#      Windows (MSVC):  x64, arm64
+#      Linux (g++):     x64, arm64
+#
+# language_builder includes the engine (cOMS = TalesOfSouls/GameEngine) as ../cOMS -> both repositories are
+# checked out next to each other: <workspace>/LanguageBuilder + <workspace>/cOMS
+
+name: Tests
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: ${{ matrix.os }} ${{ matrix.arch }} (${{ matrix.build }})
+    runs-on: ${{ matrix.runner }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        build: [ debug, release ]
+        os: [ Windows, Linux ]
+        arch: [ x64, arm64 ]
+        include:
+          - { os: Windows, arch: x64,   runner: windows-latest }
+          - { os: Windows, arch: arm64, runner: windows-11-arm }
+          - { os: Linux,   arch: x64,   runner: ubuntu-latest }
+          - { os: Linux,   arch: arm64, runner: ubuntu-24.04-arm }
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          path: LanguageBuilder
+
+      - name: Checkout cOMS
+        uses: actions/checkout@v4
+        with:
+          repository: TalesOfSouls/GameEngine
+          path: cOMS
+
+      - name: Set up MSVC (${{ matrix.arch }})
+        if: matrix.os == 'Windows'
+        uses: ilammy/msvc-dev-cmd@0b201ec74fa43914dc39ae48a89fd1d8cb592756 # v1.13.0
+        with:
+          arch: ${{ matrix.arch }}
+
+      - name: Build (Windows)
+        if: matrix.os == 'Windows'
+        shell: cmd
+        run: LanguageBuilder\build.bat ${{ matrix.build == 'release' && '-r' || '-d' }}
+
+      - name: Build (Linux)
+        if: matrix.os == 'Linux'
+        run: bash LanguageBuilder/build.sh ${{ matrix.build == 'release' && '-r' || '-d' }}
+
+      - name: Test
+        shell: bash
+        run: bash LanguageBuilder/tests/run_tests.sh

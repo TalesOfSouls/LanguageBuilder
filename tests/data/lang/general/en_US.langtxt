@@ -1,0 +1,181 @@
+version 2
+
+/////////////////////////////////////////////////////////////////////////
+// Global strings of the editor, English
+//
+// Used by the code (EDITOR_STR, @see models/localization/EditorLanguage.h)
+// and by the layout/theme files ("text: @@key", @see cOMS/ui/UILayoutTxt.cpp)
+//
+// Syntax: "key: string" (@see cOMS/localization/Language.cpp)
+//      \n = new line, quotes keep leading/trailing spaces
+// WARNING: format strings must keep the format specifiers (%s, %l, %n, %d, %f2, ...) in the same order
+//      %% = literal %
+/////////////////////////////////////////////////////////////////////////
+
+// General
+edit_copy: Copy
+edit_rename: Rename
+edit_delete: Delete
+
+// Scene2 test window (@see models/scenes/scene2.h)
+scene2_status_checkbox: Checkbox: %s
+scene2_checked: checked
+scene2_unchecked: unchecked
+scene2_status_radio: Radio: %s
+scene2_status_select: Select: %s
+scene2_status_multi_select: Multi select: %s
+scene2_status_submitted: Submitted: %s
+scene2_status_color: Color: %s
+scene2_status_tab: Tab: %s
+scene2_status_table_row: Table row: %s
+scene2_status_context_menu: Context menu: %s
+scene2_volume: Volume: %l%%
+scene2_clicked: Clicked: %l
+scene2_page_clicks: %s: %l
+
+// Game simulation window (@see models/scenes/Scene2.h)
+// Time
+simulation_speed_paused: Simulation speed: paused
+simulation_speed: Simulation speed: %nx (%s)
+simulation_time_seconds: 1 day = %f1 s
+simulation_time_minutes: 1 day = %f1 min
+simulation_time_hours: 1 day = %f1 h
+simulation_time_days_per_second: %f1 days/s
+// Solar system
+simulation_solar_planet_scale: Planet size: %lx
+simulation_solar_moon_scale: Moon size: %lx
+simulation_solar_info: Year %l, day %l\nHorseshoe loop %l\nPlanet distance: %f3 AU
+// Weather
+simulation_weather_info: Wind: %f1 u/s, %l deg\nVisibility: 1/%f1\nWater cyclone: %s
+simulation_weather_waterspout_off: off
+simulation_weather_waterspout_active: active
+simulation_weather_waterspout_no_water: no open water nearby
+// Foliage
+simulation_foliage_density: Density: %l%%
+// Factor, speed in units per second
+simulation_fly_speed: Flight speed: %f2x (%f1 units/s)
+
+// Hud (@see extensions/hud/editor_hud_general.h)
+hud_net_graph: Ping: %l\nLoss: %l\nOut: %s/s %f1 B\nIn: %s/s %f1 B
+
+debug_memory_delete: delete
+debug_memory_read: read
+debug_memory_write: write
+debug_memory_reserve: reserve
+debug_memory_subregion: subregion
+debug_memory_unnamed: memory
+debug_memory_tooltip_title: %s @ %s
+debug_memory_tooltip_range: %s %s @ %l: %s
+debug_memory_no_range: (no recorded range)
+
+debug_profile_title_path: Profiler > %s
+debug_profile_title_hint: Profiler (click a row to drill down)
+
+debug_thread_unnamed: thread
+debug_thread_tooltip_title: %s (cpu %d, thread %d)
+debug_thread_tooltip_entry: %s: %n cycles
+debug_thread_tooltip_entry_ms: %s: %n cycles (%f2 ms)
+debug_thread_idle: (idle / not profiled)
+debug_thread_header_thread: Thread
+debug_thread_header_clock: Clock
+debug_thread_header_usage: Usage (last %d ms, hover for details)
+
+debug_stat_fps: FPS
+debug_stat_fps_update: FPS update
+debug_stat_fps_render: FPS render
+debug_stat_mutex_lock: Mutex lock
+debug_stat_vram: VRAM
+debug_stat_ram: RAM
+debug_stat_stack: Stack
+debug_stat_bss: .bss
+debug_stat_net_out: Net out
+debug_stat_net_in: Net in
+debug_stat_packets_out: Packets out
+debug_stat_packets_in: Packets in
+debug_stat_packet_loss: Packet loss
+debug_stat_ping: Ping
+debug_stat_file_io: File IO
+debug_stat_gpu_upload: GPU upload
+debug_stat_draw_calls: Draw calls
+debug_stat_vertices: Vertices
+debug_stat_cpu_cycles: CPU cycles
+debug_stat_gpu_cycles: GPU cycles
+debug_stat_assets: Assets
+debug_stat_audio_delay: Audio delay
+debug_stat_ui_reused: UI reused
+debug_stat_ui_generated: UI generated
+debug_stat_ui_memory: UI memory
+debug_stat_ui_vertices: UI vertices
+debug_stat_fps_low: FPS low
+debug_stat_jobs: Jobs (queue/run)
+
+// Library reload (debug window, @see extensions/debug/dev_debug_reload.h)
+debug_reload_done: Reloaded:\n%s
+debug_reload_unchanged: No library changed
+debug_reload_busy: Not possible right now\n(scene setup or pending work), try again
+debug_reload_failed: Couldn't load:\n%s (see log)
+debug_reload_state_changed: Restart required, state changed:\n%s
+debug_reload_unsupported: Not supported by this build
+
+// Asset reload (debug window, @see extensions/debug/dev_debug_reload.h)
+debug_asset_reload_done: Reloaded:\n%s
+debug_asset_reload_unchanged: No asset changed
+debug_asset_reload_busy: Not possible right now\n(scene setup or pending work), try again
+debug_asset_reload_failed: Couldn't reload:\n%s (see log)
+debug_asset_reload_restart: Restart required, changed:\n%s
+debug_asset_reload_unsupported: Not supported by this build
+
+// Settings window (@see libs/main_loop/scenes/common/game_menu_ui.h)
+// Value labels of the sliders
+settings_value_percent: %d%%
+settings_value_degrees: %d°
+settings_value_multiplier: %f2x
+settings_value_ms: %d ms
+settings_value_resolution: %d x %d
+settings_value_distance: %d m
+// Monitor list: number, width, height, refresh rate
+settings_monitor: Monitor %d (%d x %d, %d Hz)
+
+// Hotkey list
+settings_hotkey_none: -
+settings_hotkey_press: Press a key... (Esc = cancel)
+
+// Hotkey names, the key is the name in the hotkey files (@see models/settings/InputSettings.h)
+hotkeys_cursor_movement: Move virtual cursor (hold)
+hotkeys_movement_forward: Move forward
+hotkeys_movement_back: Move back
+hotkeys_movement_left: Move left
+hotkeys_movement_right: Move right
+hotkeys_movement_up: Fly up
+hotkeys_movement_down: Fly down
+hotkeys_movement_jump: Jump / fly
+hotkeys_camera_orientation: Rotate camera (hold)
+hotkeys_element_next: UI: next element
+hotkeys_element_prev: UI: previous element
+hotkeys_element_up: UI: up
+hotkeys_element_down: UI: down
+hotkeys_element_left: UI: left
+hotkeys_element_right: UI: right
+hotkeys_element_first: UI: first / minimum
+hotkeys_element_last: UI: last / maximum
+hotkeys_element_scroll_down: UI: scroll down
+hotkeys_element_scroll_up: UI: scroll up
+hotkeys_element_confirm: UI: confirm
+hotkeys_element_cancel: UI: cancel
+hotkeys_pointer_primary: UI: click
+hotkeys_pointer_secondary: UI: right click
+hotkeys_main_menu: Menu
+hotkeys_window_feedback: Feedback window
+hotkeys_window_console: Console
+hotkeys_lib_reload: Reload libraries
+hotkeys_window_debug: Debug window
+hotkeys_window_simulation: Game simulation window
+hotkeys_mouse_mode: Mouse cursor mode
+
+// Chat + minimap of scene2 (@see scene2_hud.h)
+chat_self: You
+chat_welcome: Welcome!
+chat_offline: Offline mode: there is no chat, messages are only shown to you.
+chat_connecting: Chat: connecting ...
+chat_busy: Chat: too many messages at once, wait a moment.
+minimap_scale: %d m

@@ -1,0 +1,12 @@
+version 2
+
+// Syntax test (@see cOMS/localization/Language.cpp)
+   // indented comment
+
+menu_quit: Quit
+status_prefix: "Status: "
+net_info: Ping: %l\nLoss: %l
+escapes: Tab\tQuote\"Backslash\
+    indented_key: value with trailing spaces   
+empty_value:
+colon_in_value: a: b: c
